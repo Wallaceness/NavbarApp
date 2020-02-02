@@ -7,12 +7,21 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FrameLayout mainContainer;
+    private FragmentManager MainManager=getSupportFragmentManager();
+    private AlphabetFragment alphabetView;
+    private TapperMainFragment tapperView;
+    private Birthstones_main birthStonesView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mainContainer = findViewById(R.id.container_div);
 
+        tapperView = new TapperMainFragment();
+
+        FragmentTransaction transaction = MainManager.beginTransaction();
+        transaction.add(R.id.container_div, tapperView).addToBackStack(null).commit();
     }
 
     @Override

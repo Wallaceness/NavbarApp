@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Birthstones.OnFragmentInteractionListener} interface
+ * {@link Birthstones_main.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Birthstones#newInstance} factory method to
+ * Use the {@link Birthstones_main#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Birthstones extends Fragment {
+public class Birthstones_main extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +31,7 @@ public class Birthstones extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Birthstones() {
+    public Birthstones_main() {
         // Required empty public constructor
     }
 
@@ -41,11 +41,11 @@ public class Birthstones extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Birthstones.
+     * @return A new instance of fragment Birthstones_main.
      */
     // TODO: Rename and change types and number of parameters
-    public static Birthstones newInstance(String param1, String param2) {
-        Birthstones fragment = new Birthstones();
+    public static Birthstones_main newInstance(String param1, String param2) {
+        Birthstones_main fragment = new Birthstones_main();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

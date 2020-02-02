@@ -4,7 +4,7 @@
     <string name="alphabet_viewer">Alphabet Viewer</string>
     <string name="stress_tapper">Stress Tapper</string>
     <string name="birthstones">BirthStones</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="click_counter">Click Counter!</string>
+    <string name="long_click_to_reset_counter_to_0">(Long Click to reset counter to 0)</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

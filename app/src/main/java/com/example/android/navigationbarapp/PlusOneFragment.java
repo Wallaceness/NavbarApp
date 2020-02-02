@@ -19,7 +19,7 @@ public class PlusOneFragment extends Fragment {
     // The URL to +1.  Must be a valid URL.
     private final String PLUS_ONE_URL = "http://developer.android.com";
     private Button mPlusOneButton;
-    private MainActivity parentActivity;
+    private TapperMainFragment parentActivity;
 
 
     public PlusOneFragment() {
@@ -36,7 +36,7 @@ public class PlusOneFragment extends Fragment {
         //Find the +1 button
         mPlusOneButton = (Button) view.findViewById(R.id.counter_button);
 
-        parentActivity = (MainActivity)getActivity();
+        parentActivity = (TapperMainFragment) getParentFragment();
 
         mPlusOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
