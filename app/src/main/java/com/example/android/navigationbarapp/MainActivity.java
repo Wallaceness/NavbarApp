@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private AlphabetFragment alphabetView;
     private TapperMainFragment tapperView;
     private Birthstones_main birthStonesView;
+    Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mainContainer = findViewById(R.id.container_div);
 
+        alphabetView = new AlphabetFragment();
         tapperView = new TapperMainFragment();
+        birthStonesView = new Birthstones_main();
 
         FragmentTransaction transaction = MainManager.beginTransaction();
-        transaction.add(R.id.container_div, tapperView).addToBackStack(null).commit();
+        transaction.add(R.id.container_div, alphabetView).addToBackStack(null).commit();
+        currentFragment = alphabetView;
     }
 
     @Override
@@ -50,11 +55,28 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        FragmentTransaction transaction = MainManager.beginTransaction();
+        transaction.remove(currentFragment).commit();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.alphabet) {
+            FragmentTransaction transaction1 = MainManager.beginTransaction();
+            transaction1.replace(R.id.container_div, alphabetView).addToBackStack(null).commit();
+            currentFragment = alphabetView;
+            return true;
+        }
+        else if (id==R.id.stress_tapper){
+            FragmentTransaction transaction2 = MainManager.beginTransaction();
+            transaction2.replace(R.id.container_div, tapperView).addToBackStack(null).commit();
+            currentFragment= tapperView;
+            return true;
+        }
+        else if (id==R.id.Birthstones){
+            FragmentTransaction transaction3 = MainManager.beginTransaction();
+            transaction3.replace(R.id.container_div, birthStonesView).addToBackStack(null).commit();
+            currentFragment = birthStonesView;
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

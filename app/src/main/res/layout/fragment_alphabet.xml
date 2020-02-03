@@ -4,11 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AlphabetFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textSize="12pt"
+        android:id="@+id/toggle_button"
+        android:text="@string/grid_view"/>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        tools:context=".AlphabetFragment"
+        android:id="@+id/alphabet_container"
+        />
 </FrameLayout>

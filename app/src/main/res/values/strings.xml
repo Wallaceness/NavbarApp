@@ -7,4 +7,7 @@
     <string name="click_counter">Click Counter!</string>
     <string name="long_click_to_reset_counter_to_0">(Long Click to reset counter to 0)</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="grid_view">Grid View</string>
+    <string name="list_view">List View</string>
+    <string name="the_12_birthstones">The 12 Birthstones</string>
 </resources>

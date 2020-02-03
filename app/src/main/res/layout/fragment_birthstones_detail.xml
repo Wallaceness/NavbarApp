@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BirthstonesDetail">
+    android:id="@+id/detail_parent">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/name_field"
+        app:layout_constraintBottom_toTopOf="@id/description_field"
+        android:textSize="18pt"
+        android:gravity="center"
+        android:textStyle="bold"/>
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_field"
+        app:layout_constraintTop_toBottomOf="@+id/name_field"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12pt"/>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
