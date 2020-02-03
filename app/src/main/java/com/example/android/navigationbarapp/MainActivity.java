@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
     private TapperMainFragment tapperView;
     private Birthstones_main birthStonesView;
     Fragment currentFragment;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mainContainer = findViewById(R.id.container_div);
 
@@ -55,26 +56,27 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        FragmentTransaction transaction = MainManager.beginTransaction();
-        transaction.remove(currentFragment).commit();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.alphabet) {
             FragmentTransaction transaction1 = MainManager.beginTransaction();
             transaction1.replace(R.id.container_div, alphabetView).addToBackStack(null).commit();
             currentFragment = alphabetView;
+            toolbar.setTitle(item.getTitle());
             return true;
         }
         else if (id==R.id.stress_tapper){
             FragmentTransaction transaction2 = MainManager.beginTransaction();
             transaction2.replace(R.id.container_div, tapperView).addToBackStack(null).commit();
             currentFragment= tapperView;
+            toolbar.setTitle(item.getTitle());
             return true;
         }
         else if (id==R.id.Birthstones){
             FragmentTransaction transaction3 = MainManager.beginTransaction();
             transaction3.replace(R.id.container_div, birthStonesView).addToBackStack(null).commit();
             currentFragment = birthStonesView;
+            toolbar.setTitle(item.getTitle());
             return true;
         }
 
