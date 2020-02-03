@@ -3,11 +3,13 @@ package com.example.android.navigationbarapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class AlphabetFragment extends Fragment {
     private GridFragment gridView;
     private Button ToggleButton;
     private boolean grid=false;
+    private static final String TAG = "AlphabetFragment";
 
 
     public AlphabetFragment() {
@@ -44,7 +47,7 @@ public class AlphabetFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_alphabet, container, false);
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.alphabet_container, listView).addToBackStack(null).commit();
+        transaction.replace(R.id.alphabet_container, listView).addToBackStack(null).commit();
         ToggleButton = rootView.findViewById(R.id.toggle_button);
 
         ToggleButton.setOnClickListener(new View.OnClickListener() {
@@ -66,4 +69,14 @@ public class AlphabetFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: ");
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }
