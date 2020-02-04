@@ -45,10 +45,21 @@ public class AlphabetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (savedInstanceState!=null){
+            this.grid=savedInstanceState.getBoolean("GRID_VIEW");
+
+        }
         View rootView = inflater.inflate(R.layout.fragment_alphabet, container, false);
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.alphabet_container, listView).addToBackStack(null).commit();
         ToggleButton = rootView.findViewById(R.id.toggle_button);
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (grid){
+            transaction.replace(R.id.alphabet_container, gridView).addToBackStack(null).commit();
+            ToggleButton.setText(R.string.list_view);
+        }
+        else{
+            transaction.replace(R.id.alphabet_container, listView).addToBackStack(null).commit();
+            ToggleButton.setText(R.string.grid_view);
+        }
 
         ToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,12 +67,12 @@ public class AlphabetFragment extends Fragment {
                 FragmentTransaction transaction=manager.beginTransaction();
                 if (grid){
                     transaction.replace(R.id.alphabet_container, listView).addToBackStack(null).commit();
-                    ToggleButton.setText("Grid View");
+                    ToggleButton.setText(R.string.grid_view);
                     grid=false;
                 }
                 else{
                     transaction.replace(R.id.alphabet_container, gridView).addToBackStack(null).commit();
-                    ToggleButton.setText("List View");
+                    ToggleButton.setText(R.string.list_view);
                     grid=true;
                 }
             }
@@ -77,6 +88,8 @@ public class AlphabetFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean("GRID_VIEW", grid);
         super.onSaveInstanceState(outState);
+
     }
 }

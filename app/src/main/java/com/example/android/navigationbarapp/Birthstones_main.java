@@ -29,6 +29,7 @@ public class Birthstones_main extends Fragment {
     private MainAdapter myAdapter;
     private RecyclerView RecyclerMain;
     public static FragmentManager BirthstoneManager;
+    private BirthstonesDetail detailView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,6 +66,10 @@ public class Birthstones_main extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BirthstoneManager = getChildFragmentManager();
+        if (savedInstanceState!=null){
+            detailView = (BirthstonesDetail) BirthstoneManager.findFragmentById(R.id.birthstones_container);
+        }
         Log.d(TAG, "onCreate: ");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -78,7 +83,6 @@ public class Birthstones_main extends Fragment {
         // Inflate the layout for this fragment
         Log.d(TAG, "onCreateView: ");
         View rootView = inflater.inflate(R.layout.fragment_birthstones, container, false);
-        BirthstoneManager = getChildFragmentManager();
         ArrayList<Birthstone> stoneList = new ArrayList<Birthstone>();
         stoneList.add(new Birthstone(R.drawable.january_garnet, "January Garnet", "The word \"garnet\" comes from the 14th century Middle English word gernet, meaning \"dark red.\" The word is derived from Latin granatum, which means \"seed,\" and is called so because of the gemstone's resemblance to the red seeds of the pomegranate."));
         stoneList.add(new Birthstone(R.drawable.february_amethyst, "February Amethyst", "Amethyst is purple quartz and is a beautiful blend of violet and red that can be found in every corner of the world. The name comes from the Ancient Greek, derived from the word methustos, which means “intoxicated.” Ancient wearers believed the gemstone could protect them from drunkenness."));

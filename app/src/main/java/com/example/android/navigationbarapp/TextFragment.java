@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
@@ -19,7 +20,6 @@ public class TextFragment extends Fragment {
 
 
     public TextFragment() {
-        // Required empty public constructor
     }
 
 
@@ -29,6 +29,9 @@ public class TextFragment extends Fragment {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.fragment_text, container, false);
         textNode= root.findViewById(R.id.text_node);
+        if (savedInstanceState!=null){
+            clicks=savedInstanceState.getInt("CLICK_COUNT");
+        }
         textNode.setText(Integer.toString(clicks));
         return root;
     }
@@ -41,6 +44,12 @@ public class TextFragment extends Fragment {
     public void clearClicks(){
         clicks=0;
         textNode.setText(Integer.toString(clicks));
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("CLICK_COUNT", clicks);
+        super.onSaveInstanceState(outState);
     }
 
 }

@@ -5,12 +5,14 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.PersistableBundle;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private AlphabetFragment alphabetView;
     private TapperMainFragment tapperView;
     private Birthstones_main birthStonesView;
-    Fragment currentFragment;
     private Toolbar toolbar;
+    private int currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,14 @@ public class MainActivity extends AppCompatActivity {
         alphabetView = new AlphabetFragment();
         tapperView = new TapperMainFragment();
         birthStonesView = new Birthstones_main();
-
         FragmentTransaction transaction = MainManager.beginTransaction();
-        transaction.add(R.id.container_div, alphabetView).addToBackStack(null).commit();
-        currentFragment = alphabetView;
+        if (savedInstanceState!=null){
+//            transaction.add(R.id.container_div, MainManager.findFragmentById(savedInstanceState.getInt("current_fragment"))).addToBackStack(null).commit();
+        }
+        else{
+            transaction.add(R.id.container_div, alphabetView).addToBackStack(null).commit();
+            currentFragment = alphabetView.getId();
+        }
     }
 
     @Override
@@ -61,25 +67,32 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.alphabet) {
             FragmentTransaction transaction1 = MainManager.beginTransaction();
             transaction1.replace(R.id.container_div, alphabetView).addToBackStack(null).commit();
-            currentFragment = alphabetView;
+            currentFragment = alphabetView.getId();
             toolbar.setTitle(item.getTitle());
             return true;
         }
         else if (id==R.id.stress_tapper){
             FragmentTransaction transaction2 = MainManager.beginTransaction();
             transaction2.replace(R.id.container_div, tapperView).addToBackStack(null).commit();
-            currentFragment= tapperView;
+            currentFragment= tapperView.getId();
             toolbar.setTitle(item.getTitle());
             return true;
         }
         else if (id==R.id.Birthstones){
             FragmentTransaction transaction3 = MainManager.beginTransaction();
             transaction3.replace(R.id.container_div, birthStonesView).addToBackStack(null).commit();
-            currentFragment = birthStonesView;
+            currentFragment = birthStonesView.getId();
             toolbar.setTitle(item.getTitle());
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the state of the fragment (true=open, false=closed).
+        savedInstanceState.putInt("current_fragment", currentFragment);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
