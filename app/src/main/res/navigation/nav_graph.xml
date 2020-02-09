@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/alphabetFragment">
+
+    <fragment
+        android:id="@+id/alphabetFragment"
+        android:name="com.example.android.navigationbarapp.AlphabetFragment"
+        android:label="fragment_alphabet"
+        tools:layout="@layout/fragment_alphabet" >
+        <action
+            android:id="@+id/action_alphabetFragment_to_birthstones_main"
+            app:destination="@id/birthstones_main" />
+        <action
+            android:id="@+id/action_alphabetFragment_to_tapperMainFragment"
+            app:destination="@id/tapperMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tapperMainFragment"
+        android:name="com.example.android.navigationbarapp.TapperMainFragment"
+        android:label="TapperMainFragment" >
+        <action
+            android:id="@+id/action_tapperMainFragment_to_alphabetFragment"
+            app:destination="@id/alphabetFragment" />
+        <action
+            android:id="@+id/action_tapperMainFragment_to_birthstones_main"
+            app:destination="@id/birthstones_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/birthstones_main"
+        android:name="com.example.android.navigationbarapp.Birthstones_main"
+        android:label="Birthstones_main" >
+        <action
+            android:id="@+id/action_birthstones_main_to_alphabetFragment"
+            app:destination="@id/alphabetFragment" />
+        <action
+            android:id="@+id/action_birthstones_main_to_tapperMainFragment"
+            app:destination="@id/tapperMainFragment" />
+    </fragment>
+</navigation>
